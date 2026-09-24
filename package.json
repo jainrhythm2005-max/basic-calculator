@@ -4,4 +4,6 @@
   "description": "Basic calculator used for the CI/CD pipeline experiment",
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "license": "ISC"
+}
