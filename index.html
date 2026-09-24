@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basic Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; justify-content: center; margin-top: 60px; background: #f2f4f8; }
+    .box { background: #fff; padding: 24px 28px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.15); width: 300px; }
+    h1 { font-size: 20px; margin-top: 0; text-align: center; }
+    input, select, button { width: 100%; padding: 10px; margin: 6px 0; font-size: 16px; box-sizing: border-box; }
+    button { background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+    #result { margin-top: 12px; font-size: 18px; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Basic Calculator</h1>
+    <input type="number" id="a" placeholder="First number">
+    <select id="op">
+      <option value="add">+ Add</option>
+      <option value="subtract">- Subtract</option>
+      <option value="multiply">× Multiply</option>
+      <option value="divide">÷ Divide</option>
+    </select>
+    <input type="number" id="b" placeholder="Second number">
+    <button onclick="calculate()">Calculate</button>
+    <div id="result"></div>
+  </div>
+
+  <script src="calculator.js"></script>
+  <script>
+    function calculate() {
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const op = document.getElementById("op").value;
+      const out = document.getElementById("result");
+      if (isNaN(a) || isNaN(b)) {
+        out.textContent = "Please enter both numbers";
+        return;
+      }
+      try {
+        const fn = { add, subtract, multiply, divide }[op];
+        out.textContent = "Result: " + fn(a, b);
+      } catch (e) {
+        out.textContent = e.message;
+      }
+    }
+  </script>
+</body>
+</html>
